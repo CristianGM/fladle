@@ -2,9 +2,8 @@ package com.osacky.flank.gradle
 
 import org.gradle.api.DefaultTask
 import org.gradle.api.file.ProjectLayout
-import org.gradle.api.file.RegularFile
+import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.model.ObjectFactory
-import org.gradle.api.provider.Property
 import org.gradle.api.tasks.Internal
 import org.gradle.api.tasks.Nested
 import org.gradle.api.tasks.OutputFile
@@ -19,7 +18,7 @@ open class YamlConfigWriterTask @Inject constructor(private val extension: Flank
   var fladleConfig: FladleConfig? = null
 
   @get:OutputFile
-  val flankConfig: Property<RegularFile> =
+  val flankConfig: RegularFileProperty =
     objectFactory.fileProperty().convention(projectLayout.fladleDir.map { it.file("flank.yml") })
 
   @Internal
